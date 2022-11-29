@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.container {
+  height: 500px;
+  width: 500px;
+  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+}
+.square:hover {
+  background-color: beige;
+}
+.square {
+  border: 1px solid;
+}
