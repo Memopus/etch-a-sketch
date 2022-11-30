@@ -8,15 +8,25 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <button class="eraser">Eraser</button>
-    <button class="rgb">RGB MODE</button>
-    <input type="color" id="palette" value="#f6b73c" />
-    <div class="squaresInput">
-      <input type="range" min="1" max="50" id="squares" value="6" />
-      <label for="squares" id="squaresNumber">6</label><br />
+    <h1>Etch-A-Sketch</h1>
+    <div class="game">
+      <div class="settings">
+        <button class="eraser">Eraser</button>
+        <button class="rgb">RGB MODE</button>
+        <button class="color">Color Mode</button>
+        <div class="squareColor">
+          <input type="color" id="palette" value="#FF674D" />
+          <label for="palette">Choose Color</label>
+        </div>
+        <div class="squaresInput">
+          <input type="range" min="1" max="30" id="squares" value="6" />
+          <label for="squares" id="squaresNumber">6</label><br />
+        </div>
+      </div>
+
+      <div class="container"></div>
     </div>
 
-    <div class="container"></div>
     <script src="app.js"></script>
   </body>
 </html>

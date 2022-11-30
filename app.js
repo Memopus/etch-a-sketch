@@ -5,8 +5,11 @@ const palette = document.querySelector("#palette");
 const input = document.querySelector("#squares");
 const label = document.querySelector("#squaresNumber");
 let refresh = false;
+
+createGrid();
+
 input.addEventListener("change", () => {
-  refreshGrid();
+  label.textContent = input.value;
   createGrid();
 });
 
@@ -20,7 +23,7 @@ function createGrid() {
     container.appendChild(div);
     changeColor(div);
     eraser.addEventListener("click", () => {
-      div.style.backgroundColor = "transparent";
+      div.style.backgroundColor = "white";
     });
     input.addEventListener("change", () => {
       div.remove();
@@ -32,14 +35,15 @@ function createGrid() {
   // });
 }
 
-function refreshGrid() {
-  refresh = true;
-  return;
-}
-
 function changeColor(div) {
   div.addEventListener("mouseover", () => {
     div.style.backgroundColor = palette.value;
+  });
+
+  document.querySelector(".color").addEventListener("click", () => {
+    div.addEventListener("mouseover", () => {
+      div.style.backgroundColor = palette.value;
+    });
   });
 
   rgbButton.addEventListener("click", () => {
