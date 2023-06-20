@@ -6,57 +6,69 @@ const input = document.querySelector("#squares");
 const label = document.querySelector("#squaresNumber");
 let refresh = false;
 
-createGrid();
+createGrid(6);
 
-input.addEventListener("change", () => {
+input.addEventListener("change", (e) => {
   label.textContent = input.value;
-  createGrid();
+
+  document.getElementsByClassName("container")[0].innerHTML = "";
+
+  createGrid(e.target.value);
 });
 
-function createGrid() {
-  for (let i = 0; i < input.value ** 2; i++) {
+function createGrid(value) {
+  let divs = "";
+
+  for (let i = 0; i < value ** 2; i++) {
     const div = document.createElement("div");
-    div.style.borderColor = "black";
-    div.style.width = `${container.offsetWidth / input.value}px`;
-    div.style.width = `${container.offsetHeight / input.value}px`;
+
+    div.style.width = `${container.offsetWidth / value}px`;
+
     div.classList.add("square");
-    container.appendChild(div);
-    changeColor(div);
-    eraser.addEventListener("click", () => {
-      div.style.backgroundColor = "white";
-    });
-    input.addEventListener("change", () => {
-      div.remove();
-    });
+
+    divs += div.outerHTML;
   }
 
-  // rgbButton.addEventListener("click", () => {
-  //   rgbMode(div);
-  // });
+  container.innerHTML = divs;
 }
 
-function changeColor(div) {
-  div.addEventListener("mouseover", () => {
+eraser.addEventListener("click", () => {
+  window.addEventListener("mouseover", (e) => {
+    if (e.target.className === "square") {
+      const div = e.target;
+      div.style.backgroundColor = "white";
+    }
+  });
+});
+
+window.addEventListener("mouseover", (e) => {
+  if (e.target.className === "square") {
+    const div = e.target;
     div.style.backgroundColor = palette.value;
-  });
+  }
+});
 
-  document.querySelector(".color").addEventListener("click", () => {
-    div.addEventListener("mouseover", () => {
+document.querySelector(".color").addEventListener("click", () => {
+  window.addEventListener("mouseover", () => {
+    if (e.target.className === "square") {
+      const div = e.target;
       div.style.backgroundColor = palette.value;
-    });
+    }
   });
+});
 
-  rgbButton.addEventListener("click", () => {
-    rgbMode(div);
-  });
+rgbButton.addEventListener("click", () => {
+  rgbMode();
+});
 
-  console.log(palette.value);
-}
-function rgbMode(div) {
-  div.addEventListener("mouseover", () => {
-    const r = Math.floor(Math.random() * 255) + 1;
-    const g = Math.floor(Math.random() * 255) + 1;
-    const b = Math.floor(Math.random() * 255) + 1;
-    div.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+function rgbMode() {
+  window.addEventListener("mouseover", (e) => {
+    if (e.target.className === "square") {
+      const div = e.target;
+      const r = Math.floor(Math.random() * 255) + 1;
+      const g = Math.floor(Math.random() * 255) + 1;
+      const b = Math.floor(Math.random() * 255) + 1;
+      div.style.backgroundColor = "rgb(" + r + "," + g + "," + b + ")";
+    }
   });
 }
